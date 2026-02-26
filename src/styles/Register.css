@@ -1,0 +1,109 @@
+.auth-wrapper {
+  min-height: 100vh;
+  background: #eef2f7;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Top bar */
+.top-bar {
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  padding: 18px 40px;
+  font-weight: bold;
+}
+
+/* Card */
+.auth-card {
+  width: 520px;
+  margin: 70px auto;
+  background: #f4f4f4;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2d3748;
+}
+
+/* Labels */
+.auth-card label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Inputs */
+.auth-card input,
+.auth-card select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  font-size: 15px;
+  outline: none;
+}
+
+/* Mobile row */
+.mobile-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-row select {
+  width: 90px;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 14px;
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  flex: 1;
+  padding: 14px;
+  background: white;
+  color: #3f6fb5;
+  border: 1px solid #3f6fb5;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+}
+
+.btn-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* keep same main button */
+.btn-login.secondary {
+  background: linear-gradient(135deg, #4f8cff, #3b6edc);
+  opacity: 0.85;
+}
+
+.btn-login.secondary:hover {
+  opacity: 1;
+}
