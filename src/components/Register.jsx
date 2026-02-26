@@ -1,135 +1,149 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { Component } from "react";
 import "../styles/Register.css";
+import { registerUser } from "../services/authService";
 
-export default function Register() {
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
+class Register extends Component {
+  state = {
     name: "",
-    login: "",
     email: "",
+    countryCode: "+91",
+    mobile: "",
     password: "",
-    accepted: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm({
-      ...form,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    confirmPassword: "",
+    loading: false,
+    error: "",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value, error: "" });
+  };
 
-    if (!form.accepted) {
-      toast.warning("Please accept the terms and conditions");
-      return;
+  // ✅ ADD THIS (YOUR MISSING PART)
+  goToLogin = () => {
+    this.props.navigate("login");
+  };
+
+  handleRegister = async () => {
+    const {
+      name,
+      email,
+      countryCode,
+      mobile,
+      password,
+      confirmPassword,
+    } = this.state;
+
+    // ✅ validation
+    if (!name || !email || !mobile || !password) {
+      return this.setState({ error: "All fields required" });
     }
 
-    // Success toast
-    toast.success("Registration Successful ✅");
+    if (password !== confirmPassword) {
+      return this.setState({ error: "Passwords do not match" });
+    }
 
-    // Redirect to login
-    setTimeout(() => {
-      navigate("/login");
-    }, 1500);
+    try {
+      this.setState({ loading: true });
+
+      // 🔥 EXACT PAYLOAD FOR YOUR BACKEND
+      const payload = {
+        name,
+        email,
+        mobile: {
+          country_code: countryCode,
+          national_number: mobile,
+        },
+        password,
+      };
+
+      console.log("Sending payload:", payload);
+
+      const res = await registerUser(payload);
+
+      alert(res.data?.message || "Registered successfully");
+
+      // ✅ redirect to login
+      this.props.navigate("login");
+    } catch (err) {
+      this.setState({
+        error: err?.message || "Registration failed",
+      });
+    } finally {
+      this.setState({ loading: false });
+    }
   };
 
-  return (
-    <div className="auth-wrapper">
-      <div className="auth-card">
-        {/* LEFT PANEL - Form */}
-        <div className="auth-left">
-          <div className="logo">COMPANY LOGO</div>
-          
-          <div className="tabs">
-            <span className="active">sign up</span>
-            <span onClick={() => navigate("/login")}>login</span>
+  render() {
+    return (
+      <div className="auth-wrapper">
+        <div className="top-bar">
+          <h2>ADMIN</h2>
+        </div>
+
+        <div className="auth-card">
+          <h2 className="title">Registration</h2>
+
+          {this.state.error && (
+            <div className="error-text">{this.state.error}</div>
+          )}
+
+          <label>Name</label>
+          <input name="name" onChange={this.handleChange} />
+
+          <label>Email</label>
+          <input name="email" onChange={this.handleChange} />
+
+          <label>Mobile</label>
+          <div className="mobile-row">
+            <select
+              name="countryCode"
+              value={this.state.countryCode}
+              onChange={this.handleChange}
+            >
+              <option value="+91">+91</option>
+              <option value="+1">+1</option>
+            </select>
+
+            <input
+              name="mobile"
+              placeholder="9876543210"
+              onChange={this.handleChange}
+            />
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            onChange={this.handleChange}
+          />
 
-            <div className="input-group">
-              <input
-                type="text"
-                name="login"
-                placeholder="monile no"
-                value={form.login}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            onChange={this.handleChange}
+          />
 
-            <div className="input-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="example@email.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <button
+            className="btn-login"
+            onClick={this.handleRegister}
+            disabled={this.state.loading}
+          >
+            {this.state.loading ? "Please wait..." : "Register"}
+          </button>
 
-            <div className="input-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                value={form.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="input-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="confirm"
-                value={form.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="terms">
-              <input
-                type="checkbox"
-                name="accepted"
-                checked={form.accepted}
-                onChange={handleChange}
-                required
-              />
-              <span>I have accepted the terms and conditions</span>
-            </div>
-
-            <button type="submit" className="auth-btn">
-              sign up →
-            </button>
-          </form>
-        </div>
-
-        {/* RIGHT PANEL - Welcome */}
-        <div className="auth-right">
-          <h2>Welcome!</h2>
-          <p>Lorem ipsum dolor sit amet. Nulla vero eos clita sed tempor ipsum.</p>
+          {/* Login (same style) */}
+            <button className="btn-login" 
+                  onClick={this.goToLogin}
+                  disabled={this.state.loading}
+            >
+              Login
+          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Register;

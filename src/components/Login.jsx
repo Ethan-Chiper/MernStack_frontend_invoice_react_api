@@ -1,82 +1,140 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "../styles/Register.css";
+import React, { Component } from "react";
+import "../styles/Login.css";
+import { loginUser } from "../services/authService";
 
-export default function Login() {
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
-    email: "",
+class Login extends Component {
+  state = {
+    username: "",
     password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    loading: false,
+    error: "",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast.success("Login Successful ✅");
-    
-    // Redirect to product dashboard after 1.5 seconds
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 1500);
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value, error: "" });
   };
 
-  return (
-    <div className="auth-wrapper">
-      <div className="auth-card">
-        {/* LEFT PANEL - Form */}
-        <div className="auth-left">
-          <h1>Hello!</h1>
-          <p>Sign in to your account</p>
+  // ✅ back to register
+  goBack = () => {
+    this.props.navigate && this.props.navigate("register");
+  };
 
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
+  // ✅ bottom register button navigation
+  goToRegister = () => {
+    this.props.navigate && this.props.navigate("register");
+  };
+  // 🔥 LOGIN API
+  handleLogin = async () => {
+    const { username, password } = this.state;
 
-            <div className="input-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={form.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
+    if (!username || !password) {
+      return this.setState({
+        error: "Please enter username and password",
+      });
+    }
 
-            <button type="submit" className="auth-btn">
-              SIGN IN
-            </button>
-          </form>
+    try {
+      this.setState({ loading: true });
 
-          <p className="bottom-link">
-            Don't have an account?{" "}
-            <span onClick={() => navigate("/")}>Create</span>
-          </p>
+      const payload = {
+        email: username, // change to username if backend needs
+        password,
+      };
+
+      console.log("🚀 Login payload:", payload);
+
+      const res = await loginUser(payload);
+
+      // ✅ IMPORTANT — SAVE TOKEN + USER_ID
+      const token = res?.data?.data?.token;
+      const userId = res?.data?.data?.user?.user_id;
+
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+
+      if (userId) {
+        localStorage.setItem("user_id", userId);
+      }
+
+      console.log("✅ Saved token:", token);
+      console.log("✅ Saved user_id:", userId);
+
+      alert(res?.data?.message || "Login successful");
+
+      // redirect
+      this.props.navigate("dashboard");
+    } catch (err) {
+      console.error("❌ Login error:", err?.response || err);
+
+      this.setState({
+        error:
+          err?.response?.data?.message ||
+          err?.message ||
+          "Login failed",
+      });
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
+  render() {
+    return (
+      <div className="auth-wrapper">
+        {/* 🔵 Top Bar — RIGHT ALIGNED */}
+        <div className="top-bar top-bar-flex">
+          <h2>ADMIN</h2>
+
+          <button className="back-btn" onClick={this.goBack}>
+            ← Back
+          </button>
         </div>
 
-        {/* RIGHT PANEL - Welcome */}
-        <div className="auth-right">
-          <h2>Welcome Back!</h2>
-          <p>Lorem ipsum dolor sit amet.</p>
+        <div className="auth-card">
+          <h2 className="title">Login</h2>
+
+          {this.state.error && (
+            <div className="error-text">{this.state.error}</div>
+          )}
+
+          <label>username</label>
+          <input
+            name="username"
+            placeholder="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+
+          <label>password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+
+          <div className="forgot">Forgot password?</div>
+
+          <button
+            className="btn-login"
+            onClick={this.handleLogin}
+            disabled={this.state.loading}
+          >
+            {this.state.loading ? "Please wait..." : "Login"}
+          </button>
+
+          {/* 🔥 CLICKABLE WORD (NOT BUTTON) */}
+          <div className="auth-switch">
+              Don't have an account?{" "}
+            <span className="link-text" onClick={this.goToRegister}>
+              Register
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Login;

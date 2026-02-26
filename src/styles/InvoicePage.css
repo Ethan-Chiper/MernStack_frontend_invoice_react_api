@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.inv-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* Sidebar */
+.inv-sidebar {
+  width: 240px;
+  background: #1f2a44;
+  color: white;
+  padding: 24px;
+}
+
+.inv-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.inv-sidebar li {
+  padding: 12px 0;
+  opacity: 0.9;
+}
+
+.inv-sidebar li.active {
+  opacity: 1;
+}
+
+/* Main */
+.inv-main {
+  flex: 1;
+  padding: 30px;
+}
+
+.inv-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background: #3b5bbb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Card */
+.inv-card {
+  background: white;
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+/* Add Row */
+.add-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.add-row input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 220px;
+}
+
+.add-btn {
+  background: #3b5bbb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Meta */
+.meta-box {
+  margin-left: auto;
+  line-height: 1.8;
+}
+
+/* Table */
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inv-table th {
+  background: #f1f3f6;
+  padding: 12px;
+  text-align: left;
+}
+
+.inv-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.item-title {
+  font-weight: 600;
+}
+
+.item-sub {
+  font-size: 12px;
+  color: #777;
+}
+
+.price-input,
+.qty-input {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  border-radius: 4px;
+  width: 90px;
+  background: #f8f9fb;
+}
+
+/* Totals */
+.totals {
+  width: 320px;
+  margin-left: auto;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.pdf-btn {
+  margin-top: 14px;
+  width: 100%;
+  background: #3b5bbb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.thank-text {
+  text-align: center;
+  margin-top: 28px;
+}

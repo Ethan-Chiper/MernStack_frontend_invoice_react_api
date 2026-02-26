@@ -1,7 +1,7 @@
-# dependencies
 node_modules/
+build/
+dist/
+.env
 package-lock.json
 yarn.lock
-
-# testing
 /coverage

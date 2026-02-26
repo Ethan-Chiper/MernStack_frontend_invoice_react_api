@@ -1,0 +1,357 @@
+.cust-wrapper {
+  min-height: 100vh;
+  background: #eef2f7;
+  font-family: Arial;
+}
+
+.cust-topbar {
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-icon {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.cust-card {
+  width: 520px;
+  margin: 60px auto;
+  background: #f4f4f4;
+  padding: 40px;
+  border-radius: 14px;
+}
+
+.cust-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cust-card input,
+.cust-card select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+}
+
+.mobile-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-row select {
+  width: 90px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.create-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.profile-grid p {
+  margin: 8px 0;
+}
+
+/* ===== Customer View Page ===== */
+
+.cust-view-card {
+  width: 520px;
+  margin: 70px auto;
+  background: #f4f4f4;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.cust-title-center {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2d3748;
+}
+
+.cust-view-body {
+  margin-top: 10px;
+}
+
+.cust-row {
+  margin-bottom: 18px;
+}
+
+.cust-row label {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.cust-value {
+  font-size: 18px;
+  color: #2d3748;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.grid-2-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cust-delete-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.cust-delete-btn {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 14px 60px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.cust-delete-btn:hover {
+  opacity: 0.9;
+}
+
+/* Add to Customer.css */
+
+.cust-wrapper {
+  min-height: 100vh;
+  background: #f4f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.top-bar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  padding: 18px 40px;
+}
+
+.top-bar-flex h2 {
+  margin: 0;
+}
+
+.profile-icon {
+  font-size: 24px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.profile-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.cust-card {
+  width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.cust-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2d3748;
+}
+
+.cust-card label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.cust-card input,
+.cust-card select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.cust-card input:focus,
+.cust-card select:focus {
+  border-color: #3f6fb5;
+  box-shadow: 0 0 0 2px rgba(63, 111, 181, 0.1);
+}
+
+.cust-card input:disabled,
+.cust-card select:disabled {
+  background: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.mobile-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-row select {
+  width: 120px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.create-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  background: linear-gradient(90deg, #3f6fb5, #4f7fc8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.create-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.create-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.view-list-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #3f6fb5;
+  border: 1px solid #3f6fb5;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.view-list-btn:hover:not(:disabled) {
+  background: #3f6fb5;
+  color: white;
+}
+
+.back-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #5a6268;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ffcdd2;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .cust-card {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .mobile-row {
+    flex-direction: column;
+  }
+  
+  .mobile-row select {
+    width: 100%;
+  }
+}
+/* Add to Customer.css */
+
+.section-title {
+  margin: 20px 0 10px;
+  color: #2d3748;
+  font-size: 16px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.cust-card {
+  width: 650px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .cust-card {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
